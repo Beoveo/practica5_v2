@@ -9,7 +9,7 @@ import es.ucm.fdi.tp.base.model.GameState;
 
 public abstract class GUIView<S extends GameState<S,A>, A extends GameAction<S,A>> extends JPanel{
 	protected JFrame window;
-	//protected JPanel panel;
+	protected JPanel mainPanel;
 	private boolean isEnabled = false;
 	
 	public abstract void enable();
@@ -19,17 +19,13 @@ public abstract class GUIView<S extends GameState<S,A>, A extends GameAction<S,A
 	public abstract void setPlayersInfoViewer(PlayersInfoViewer<S,A> playersInfoViewer);
 	public abstract void setGameController(GameController<S,A> gameCntrl);
 	
-	/*
-	public GUIView (){
-		this.window = new JFrame(" ");
-		this.window.setVisible(true);
-	}
-	*/
+	
+	public GUIView (){}
+	
 	
 	//asi habilitamos o desabilitamos la ventana que queramos usar.
 	public void enableWindowMode(){
 		if(!isEnabled){
-			//this.window = new JFrame(" VENTANA");
 			window.setContentPane(this);
 			window.setVisible(true);
 			isEnabled = true;

@@ -3,6 +3,7 @@ package es.ucm.fdi.tp.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+import javax.swing.JFrame;
 
 import es.ucm.fdi.tp.base.model.GamePlayer.PlayerMode;
 import es.ucm.fdi.tp.extra.jboard.JBoard;
@@ -22,7 +23,7 @@ public class WolfAndSheepView extends GUIView<WolfAndSheepState, WolfAndSheepAct
 	GameController<WolfAndSheepState, WolfAndSheepAction> gameCntrl;
 	WolfAndSheepState state = new WolfAndSheepState(8);
 
-	public WolfAndSheepView() {
+	public WolfAndSheepView() {	
 		this.colorP1 = Color.RED;
 		this.colorP2 = Color.BLUE;
 		
@@ -30,6 +31,10 @@ public class WolfAndSheepView extends GUIView<WolfAndSheepState, WolfAndSheepAct
 	}
 
 	private void initGUI() {
+		super.window = new JFrame();
+		super.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		super.window.setSize(400, 100);
+		super.window.setVisible(true);
 		createBoardData(8, 8);
 
 		boardComp = new JBoard() {
@@ -95,7 +100,7 @@ public class WolfAndSheepView extends GUIView<WolfAndSheepState, WolfAndSheepAct
 			}
 		};
 		//cambio panel por window
-		window.getContentPane().add(boardComp, BorderLayout.CENTER);
+		super.window.getContentPane().add(boardComp, BorderLayout.CENTER);
 	}
 
 

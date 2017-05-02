@@ -1,6 +1,7 @@
 package es.ucm.fdi.tp.view;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,20 +27,14 @@ public class GameContainer<S extends GameState<S,A>, A extends GameAction<S,A>> 
 			 GameObservable<S, A> game){
 		this.gameView = gameView;
 		this.gameCtrl = gameCtrl;
-		initGUI();
+		initGUI(this.gameView);
 		game.addObserver(this);
 	}
 	
-	private void initGUI() {
-		//this.window.add();
-		//messageViewer = new MessageViewerComp<S, A>(); 
-		//playersInfoViewer = new PlayersInfoComp<S, A>();
-		controlPanel = new ControlPanel<S, A>();
-		window = new JFrame(" ");
-		window.setVisible(true);
-		window.getContentPane().add(gameView, BorderLayout.CENTER);
-		super.window.setContentPane(new JPanel(new BorderLayout(25,25))); 
-		super.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	private void initGUI(GUIView<S, A> gameView) {
+		playersInfoViewer = new PlayersInfoComp<S, A>(gameView);
+		messageViewer = new MessageViewerComp<S, A>(gameView); 
+		controlPanel = new ControlPanel<S, A>(gameView);
 	}
 	
 	@Override
@@ -61,7 +56,7 @@ public class GameContainer<S extends GameState<S,A>, A extends GameAction<S,A>> 
 				update(e.getState());
 			break;
 		case Start:
-				initGUI();
+				initGUI(this.gameView);
 			break;
 		case Stop:
 				disable();

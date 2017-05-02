@@ -31,8 +31,8 @@ public class ControlPanel <S extends GameState<S,A>, A extends GameAction<S,A>> 
 	
 	private GameController<S,A> gameCntrl;
 	
-	public ControlPanel(){
-		initGUI();
+	public ControlPanel(GUIView<S, A> gameView){
+		initGUI(gameView);
 	}
 	
 	private JButton botonesMenu(String nombre){
@@ -46,7 +46,7 @@ public class ControlPanel <S extends GameState<S,A>, A extends GameAction<S,A>> 
 		return button;
 	}
 	
-	private void initGUI() {
+	private void initGUI(GUIView<S, A> gameView) {
 		//crear los botones y el combo-box
 		
 		JMenuBar menuBar = new JMenuBar(); 
@@ -74,8 +74,8 @@ public class ControlPanel <S extends GameState<S,A>, A extends GameAction<S,A>> 
 		playerModeCb.addItem("Smart");
 
 		//importa el orden de estas dos, del reves no sale.
-		super.window.getContentPane().add(menuBar);
-		super.window.setJMenuBar(menuBar);
+		//gameView.getWindow().getContentPane().add(menuBar);
+		gameView.getWindow().setJMenuBar(menuBar);
 
 		playerModeCb.addActionListener(new ActionListener(){
 			@Override

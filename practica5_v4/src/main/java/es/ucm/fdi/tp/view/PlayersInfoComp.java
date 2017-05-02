@@ -4,18 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.TableCellRenderer;
 
 import es.ucm.fdi.tp.base.model.GameAction;
@@ -29,11 +24,11 @@ public class PlayersInfoComp<S extends GameState<S,A>, A extends GameAction<S,A>
 	private Map<Integer, Color> colors; // Line -> Color
 	private ColorChooser colorChooser;
 	
-	public PlayersInfoComp(){
-		initGUI();
+	public PlayersInfoComp(GUIView<S, A> gameView){
+		initGUI(gameView);
 	}
 	
-	private void initGUI() {
+	private void initGUI(GUIView<S, A> gameView) {
 		JPanel playerInfoPanel = new JPanel(new BorderLayout());
 		colors = new HashMap<>();
 		colorChooser = new ColorChooser(new JFrame(), "Choose Line Color", Color.BLACK);
@@ -76,10 +71,8 @@ public class PlayersInfoComp<S extends GameState<S,A>, A extends GameAction<S,A>
 		playerInfoPanel.add(new JScrollPane(table), BorderLayout.CENTER);
 		JPanel ctrlPabel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		playerInfoPanel.add(ctrlPabel, BorderLayout.PAGE_START);
-
-		
 		playerInfoPanel.setOpaque(true);
-		panel.add(playerInfoPanel, BorderLayout.EAST);
+		gameView.getWindow().getContentPane().add(playerInfoPanel, BorderLayout.LINE_END);
 	}
 
 	

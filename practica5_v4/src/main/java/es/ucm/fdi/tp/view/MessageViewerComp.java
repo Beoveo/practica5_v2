@@ -19,14 +19,14 @@ public class MessageViewerComp<S extends GameState<S,A>, A extends GameAction<S,
 	private JTextArea msgArea;
 	private GameController<S,A> gameCtrl;
 	
-	public MessageViewerComp(){
-		initGUI();
+	public MessageViewerComp(GUIView<S, A> gameView){
+		initGUI(gameView);
 	}
 	
 	/**
 	 * Metodo que crea el area de texto y lo coloca en el JPanel
 	 */
-	private void initGUI() {
+	private void initGUI(GUIView<S, A> gameView) {
 		JPanel txtPanel = new JPanel();
 		msgArea = new JTextArea(15,20); 
 		msgArea.setPreferredSize(new Dimension(200, 300));
@@ -34,8 +34,7 @@ public class MessageViewerComp<S extends GameState<S,A>, A extends GameAction<S,
 		JScrollPane txtScroll = new JScrollPane(msgArea,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); 
 		txtPanel.add(txtScroll);
-		panel.add(txtPanel, BorderLayout.LINE_END);
-		window.add(txtPanel);
+		gameView.getWindow().getContentPane().add(txtPanel, BorderLayout.LINE_END);
 	}
 		@Override
 	public void addContent(String msg) {

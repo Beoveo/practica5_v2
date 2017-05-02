@@ -146,9 +146,8 @@ public class MainP5 {
 						GUIView<S, A> guiView = (GUIView<S, A>) createGameView(gType);
 						GameController<S, A> gameCtrlPlayer = new GUIController<S,A> (id, p1, p2, game);
 						guiView.setGameController(gameCtrlPlayer);
-						
 						GUIView<S,A> container = new GameContainer<S, A>(guiView, gameCtrlPlayer, game);
-						container.enableWindowMode();
+					//	container.enableWindowMode();
 						
 						container.setTitle(gType.toUpperCase() + " View of Jugador " + id);
 					 }
@@ -167,7 +166,6 @@ public class MainP5 {
 				game.start(); 
 			} 
 		});
-		
    }
 	
 	
